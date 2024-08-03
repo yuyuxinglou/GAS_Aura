@@ -13,5 +13,10 @@ UCLASS()
 class GAS_AURA_API AAuraCharater : public AAuraCharaterBase
 {
 	GENERATED_BODY()
-	
+public:
+	AAuraCharater();
+	virtual void PossessedBy(AController* NewController) override;
+	virtual void OnRep_PlayerState() override;
+private:
+	void InitAbilityActorInfo();
 };

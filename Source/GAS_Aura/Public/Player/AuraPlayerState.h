@@ -3,34 +3,24 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/Character.h"
 #include "AbilitySystemInterface.h"
-#include "AuraCharaterBase.generated.h"
+#include "GameFramework/PlayerState.h"
+#include "AuraPlayerState.generated.h"
 
 class UAttributeSet;
 class UAbilitySystemComponent;
-
-UCLASS(Abstract)
-class GAS_AURA_API AAuraCharaterBase : public ACharacter,public IAbilitySystemInterface
+/**
+ * 
+ */
+UCLASS()
+class GAS_AURA_API AAuraPlayerState : public APlayerState,public IAbilitySystemInterface
 {
 	GENERATED_BODY()
-
 public:
-	
-	AAuraCharaterBase();
+	AAuraPlayerState();
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
 
 	UAttributeSet* GetAttributeSet() const {return  AttributSet; };
-protected:
-	
-	virtual void BeginPlay() override;
-	
-
-public:
-	UPROPERTY(EditAnywhere,Category="Combat")
-	TObjectPtr<USkeletalMeshComponent> Weapon;
-
-
 	UPROPERTY()
 	TObjectPtr<UAbilitySystemComponent> AbilitySystemComponent;
 
