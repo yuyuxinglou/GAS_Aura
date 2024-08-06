@@ -28,13 +28,14 @@ void AAuraCharater::PossessedBy(AController* NewController)
 void AAuraCharater::OnRep_PlayerState()
 {
 	Super::OnRep_PlayerState();
-	InitAbilityActorInfo();
+	// InitAbilityActorInfo();
 }
 
 void AAuraCharater::InitAbilityActorInfo()
 {
 	AAuraPlayerState*  AuraPlayerState=GetPlayerState<AAuraPlayerState>();
 	check(AuraPlayerState);
-	AbilitySystemComponent->InitAbilityActorInfo(AuraPlayerState,this);
+	AuraPlayerState->GetAbilitySystemComponent()->InitAbilityActorInfo(AuraPlayerState,this);
+	AbilitySystemComponent=AuraPlayerState->GetAbilitySystemComponent();
 	AttributSet=AuraPlayerState->GetAttributeSet();
 } 

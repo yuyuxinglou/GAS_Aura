@@ -6,7 +6,6 @@
 #include "AbilitySystem/AuraAbilitySystemComponent.h"
 #include "AbilitySystem/AuraAttributeSet.h"
 #include "GAS_Aura/GAS_Aura.h"
-#include "Math/UnrealMathFPU.h"
 
 AAuraEnemyCharater::AAuraEnemyCharater()
 {
