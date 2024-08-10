@@ -25,8 +25,10 @@ void AAuraPlayerController::BeginPlay()
 
 	// UEnhancedInputLocalPlayerSubsystem;
 	UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(GetLocalPlayer());
-	check(Subsystem);
-	Subsystem->AddMappingContext(AuraContext,0);
+	if(Subsystem)
+	{
+		Subsystem->AddMappingContext(AuraContext,0);
+	}
 	bShowMouseCursor=true;
 	FInputModeGameAndUI InputModeData;
 	InputModeData.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);//不锁定鼠标

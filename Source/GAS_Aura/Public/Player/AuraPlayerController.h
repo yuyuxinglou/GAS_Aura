@@ -23,6 +23,7 @@ public:
 protected:
 	virtual void BeginPlay() override;
 	virtual void SetupInputComponent() override;
+	
 private:
 	UPROPERTY(EditAnywhere,Category="Input")
 	TObjectPtr<UInputMappingContext> AuraContext;
@@ -35,7 +36,7 @@ private:
 
 	void CursorTrace();
 
-	IEnemyInterface *LastActor;
-	IEnemyInterface *ThisActor;
+	TObjectPtr<IEnemyInterface> LastActor;
+	TObjectPtr<IEnemyInterface> ThisActor;
 	
 };
