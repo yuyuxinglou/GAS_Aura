@@ -22,6 +22,8 @@ void UAuraAttributeSet::PreAttributeChange(const FGameplayAttribute& Attribute, 
 	{
 		NewValue=FMath::Clamp(NewValue,0,GetMaxMana());
 	}
+
+	
 	
 }
 
