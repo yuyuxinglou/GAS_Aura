@@ -6,7 +6,9 @@
 #include "AbilitySystem/AuraAbilitySystemComponent.h"
 #include "AbilitySystem/AuraAttributeSet.h"
 
-void UOverlayAuraWidgetController::BroadcastInitiaValues()
+
+
+void UOverlayAuraWidgetController::BroadcastInitialValues()
 {
 	UAuraAttributeSet* AuraAttributes=CastChecked<UAuraAttributeSet>(AttributeSet);
 	OnHealthChanged.Broadcast(AuraAttributes->GetHealth());

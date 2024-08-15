@@ -37,7 +37,7 @@ class GAS_AURA_API UOverlayAuraWidgetController : public UAuraWidgetController
 {
 	GENERATED_BODY()
 public:
-	virtual void BroadcastInitiaValues() override;
+	virtual void BroadcastInitialValues() override;;
 	virtual void BindCallbacksToDependencies() override;
 	
 	UPROPERTY(BlueprintAssignable, Category="GAS|Messages")

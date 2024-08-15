@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "GameplayTagContainer.h"
 #include "InputAction.h"
 #include "GameFramework/PlayerController.h"
 #include "AuraPlayerController.generated.h"
@@ -10,6 +11,10 @@
 class UInputMappingContext;
 struct FInputActionValue;
 class IEnemyInterface;
+class UAuraInputConfig;
+class UAuraAbilitySystemComponent;
+class USplineComponent;
+class AMagicCircle;
 /**
  * 
  */
@@ -31,10 +36,26 @@ private:
 	UPROPERTY(EditAnywhere,Category="Input")
 	TObjectPtr<UInputAction> MoveAction;
 
-	// UFUNCTION(BlueprintCallable,Category="Move")
+
+	void AbilityInputTagPressed(FGameplayTag InputTag);
+	void AbilityInputTagReleased(FGameplayTag InputTag);
+	void AbilityInputTagHeld(FGameplayTag InputTag);
+	
+
 	void Move(const FInputActionValue& InputActionValue);
 
+
+	UPROPERTY(EditDefaultsOnly, Category="Input")
+	TObjectPtr<UAuraInputConfig> InputConfig;
+
+	UPROPERTY()
+	TObjectPtr<UAuraAbilitySystemComponent> AuraAbilitySystemComponent;
+
+	UAuraAbilitySystemComponent* GetASC();
+	
 	void CursorTrace();
+
+	FHitResult CursorHit;
 
 	IEnemyInterface* LastActor;
 	IEnemyInterface* ThisActor;

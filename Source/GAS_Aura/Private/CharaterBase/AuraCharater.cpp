@@ -6,7 +6,7 @@
 #include "AbilitySystemComponent.h"
 #include "AbilitySystem/AuraAbilitySystemComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
-#include "HUD/AuraHUD.h"
+#include "UI/HUD/AuraHUD.h"
 #include "Player/AuraPlayerController.h"
 #include "Player/AuraPlayerState.h"
 
@@ -26,6 +26,7 @@ void AAuraCharater::PossessedBy(AController* NewController)
 {
 	Super::PossessedBy(NewController);
 	InitAbilityActorInfo();
+	AddCharacterAbilities();
 }
 
 void AAuraCharater::OnRep_PlayerState()

@@ -1,7 +1,9 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "HUD/AuraHUD.h"
+#include "UI/HUD/AuraHUD.h"
+
+#include "UI/WidgetController/AttributeMenuWidgetController.h"
 
 UOverlayAuraWidgetController* AAuraHUD::GetOverlayAuraWidgetController(const FWidgetControllerParams& WCParams)
 {
@@ -14,6 +16,17 @@ UOverlayAuraWidgetController* AAuraHUD::GetOverlayAuraWidgetController(const FWi
 	return OverlayAuraWidgetController;
 }
 
+UAttributeMenuWidgetController* AAuraHUD::GetAttributeMenuWidgetController(const FWidgetControllerParams& WCParams)
+{
+	if (AttributeMenuWidgetController == nullptr)
+	{
+		AttributeMenuWidgetController = NewObject<UAttributeMenuWidgetController>(this, AttributeMenuWidgetControllerClass);
+		AttributeMenuWidgetController->SetWidgetControllerParams(WCParams);
+		AttributeMenuWidgetController->BindCallbacksToDependencies();
+	}
+	return AttributeMenuWidgetController;
+}
+
 void AAuraHUD::InitOverlay(APlayerController* PC, APlayerState* PS, UAbilitySystemComponent* ASC, UAttributeSet* AS)
 {
 	checkf(OverlayWidgetClass,TEXT("Overlay Widget Class uninitialized, please fill out BP_AuraHUD"));
@@ -24,7 +37,7 @@ void AAuraHUD::InitOverlay(APlayerController* PC, APlayerState* PS, UAbilitySyst
 	const FWidgetControllerParams WidgetControllerParams(PC,PS,ASC,AS);
 	UOverlayAuraWidgetController* OverlayWidgetController=GetOverlayAuraWidgetController(WidgetControllerParams);
 	OverlayWidget->SetWigetController(OverlayWidgetController);
-	OverlayWidgetController->BroadcastInitiaValues();
+	OverlayWidgetController->BroadcastInitialValues();
 	Widget->AddToViewport();
 }
 

@@ -18,6 +18,9 @@
  * 
  */
 
+DECLARE_DELEGATE_RetVal(FGameplayAttribute,FAttributeSignature);
+
+
 
 
 USTRUCT()
@@ -54,6 +57,11 @@ struct FEffectProperties
 	ACharacter* TargetCharacter = nullptr;
 };
 
+// typedef is specific to the FGameplayAttribute() signature, but TStaticFunPtr is generic to any signature chosen
+//typedef TBaseStaticDelegateInstance<FGameplayAttribute(), FDefaultDelegateUserPolicy>::FFuncPtr FAttributeFuncPtr;
+template<class T>
+using TStaticFuncPtr = typename TBaseStaticDelegateInstance<T, FDefaultDelegateUserPolicy>::FFuncPtr;
+
 UCLASS()
 class GAS_AURA_API UAuraAttributeSet : public UAttributeSet
 {
@@ -69,7 +77,7 @@ public:
 
 
 
-
+	TMap<FGameplayTag,TStaticFuncPtr<FGameplayAttribute()>> TagsToAttributes;
 
 
 	
