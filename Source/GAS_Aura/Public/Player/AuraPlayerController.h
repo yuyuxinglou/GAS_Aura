@@ -55,6 +55,8 @@ private:
 	
 	void CursorTrace();
 
+	bool bTargeting=false;
+	
 	FHitResult CursorHit;
 
 	IEnemyInterface* LastActor;

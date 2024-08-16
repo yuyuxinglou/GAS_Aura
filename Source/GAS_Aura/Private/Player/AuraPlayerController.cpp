@@ -56,6 +56,7 @@ void AAuraPlayerController::SetupInputComponent()
 
 void AAuraPlayerController::AbilityInputTagPressed(FGameplayTag InputTag)
 {
+	
 	if (GetASC() && GetASC()->HasMatchingGameplayTag(FAuraGameplayTags::Get().Player_Block_InputPressed))
 	{
 		return;
@@ -71,6 +72,7 @@ void AAuraPlayerController::AbilityInputTagPressed(FGameplayTag InputTag)
 		// 	TargetingStatus = ETargetingStatus::NotTargeting;
 		// }
 		// bAutoRunning = false;
+		bTargeting=ThisActor  ? true:false;
 	}
 	if (GetASC()) GetASC()->AbilityInputTagPressed(InputTag);
 }
@@ -127,17 +129,18 @@ void AAuraPlayerController::AbilityInputTagHeld(FGameplayTag InputTag)
 	{
 		return;
 	}
-	// if (!InputTag.MatchesTagExact(FAuraGameplayTags::Get().InputTag_LMB))
-	// {
-	// 	if (GetASC()) GetASC()->AbilityInputTagHeld(InputTag);
-	// 	return;
-	// }
-	if (InputTag.MatchesTagExact(FAuraGameplayTags::Get().InputTag_LMB))
+	if (!InputTag.MatchesTagExact(FAuraGameplayTags::Get().InputTag_LMB))
 	{
 		if (GetASC()) GetASC()->AbilityInputTagHeld(InputTag);
 		return;
 	}
+	
 
+	if(bTargeting)
+	{
+		if(GetASC()) GetASC()->AbilityInputTagHeld(InputTag);
+	}
+	
 	// if (TargetingStatus == ETargetingStatus::TargetingEnemy || bShiftKeyDown)
 	// {
 	// 	if (GetASC()) GetASC()->AbilityInputTagHeld(InputTag);
